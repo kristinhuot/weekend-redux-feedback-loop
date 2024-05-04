@@ -10,7 +10,7 @@ const feelingReducer = (state = [], action) => {
   }
 
 const understandingReducer = (state = [], action) => {
-    if (action.type === 'UNDERSTANDING') {
+    if (action.type === 'SUBMIT_UNDERSTANDING') {
         return action.payload
     }
     return state;

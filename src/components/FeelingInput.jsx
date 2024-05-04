@@ -1,29 +1,36 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function FeelingInput(){
 
 const [feelingInput, setFeelingInput] = useState(0)
 
+const feelingsData = useSelector((store => store.feelingReducer))
 const dispatch = useDispatch()
+const history = useHistory();
 
-const submitFeeling = (event) => {
-    event.preventDefault()
+const submitFeeling = () => {
 
     dispatch ({
         type: 'SUBMIT_FEELING', 
         payload: feelingInput
     })
     setFeelingInput('')
+    history.push('/understanding')
 
         return (
-            <form onSubmit={submitFeeling}>
-              <input 
-                value={feelingInput}
-                onChange={(e) => setFeelingInput(e.target.value)}
-              />
-              <button>Next</button>
-            </form>
+            <div>
+                <h1>How are you feeling today?</h1>
+                <input 
+                    value={feelingsData}
+                    min={"1"}
+                    max={"5"}
+                    onChange={(e) => setFeelingInput(e.target.value)}
+                />
+                <button onClick={submitFeeling}>Next</button>
+
+            </div>
           )
 }
 
