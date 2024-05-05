@@ -13,7 +13,6 @@ function Review(){
 
     console.log('feeling data is:', feelingData);
 
-    const dispatch = useDispatch()
     const history = useHistory()
 
     const submitFeedback = () => {
@@ -24,15 +23,11 @@ function Review(){
             data: {
                 feeling: feelingData,
                 understanding: understandingData,
-                supported: supportedData,
-                comments: commentsData,
+                support: supportedData,
+                comments: commentsData
             }
         })
             .then(() => {
-                dispatch({ type: "SUBMIT_FEELING", payload: 0 });
-                dispatch({ type: "SUBMIT_UNDERSTANDING", payload: 0 });
-                dispatch({ type: "SUBMIT_SUPPORTED", payload: 0 });
-                dispatch({ type: "SUBMIT_COMMENTS", payload: "" });
                 history.push('/submit');
             })
             .catch((error) => {
