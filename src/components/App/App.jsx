@@ -41,9 +41,6 @@ function App() {
           <Route exact path='/submit'>
               <SubmissionSuccess />
           </Route>
-          <Route exact path='/'>
-              <FeelingInput />
-          </Route>
       </div>
     </Router>
   );

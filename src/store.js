@@ -30,13 +30,21 @@ const commentsReducer = (state = [], action) => {
     return state;
   }
 
+const resetFeedback = (state, [], action) => {
+  if (action.type === 'RESET_FEEDBACK'){
+    return action.payload 
+  }
+  return state; 
+
+}
+
 
 const store = createStore(
     combineReducers({
         feelingReducer,
         understandingReducer,
         supportedReducer,
-        commentsReducer
+        commentsReducer,
     }),
     applyMiddleware(logger),
   );
