@@ -23,11 +23,12 @@ const submitComments = () => {
             <div>
                 <h1>Any comments you want to leave?</h1>
                 <input 
+                    data-testid="input"
                     value={commentsInput}
                     type="text"
                     onChange={handleCommentsInput}
                 />
-                <button onClick={submitComments}>Next</button>
+                <button data-testid="next" onClick={submitComments}>Next</button>
             </div>
           )
 

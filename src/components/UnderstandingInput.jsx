@@ -24,13 +24,14 @@ const submitUnderstanding = () => {
             <div>
                 <h1>How well are you understanding the content?</h1>
                 <input 
+                    data-testid="input"
                     value={understandingInput}
                     type="number"
                     min="1"
                     max="5"
                     onChange={handleUnderstandingInput}
                 />
-                <button onClick={submitUnderstanding}>Next</button>
+                <button data-testid="next" onClick={submitUnderstanding}>Next</button>
             </div>
           )
 

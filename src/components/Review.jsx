@@ -1,51 +1,45 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import axios from "axios";
 
 
 function Review(){
 
-    const feelingData = useSelector((store) => store.feelingReducer) 
-    const understandingData = useSelector((store) => store.understandingReducer)
-    const supportedData = useSelector((store) => store.supportedReducer)
-    const commentsData = useSelector((store) => store.commentsReducer)
+    const feelingData = useSelector((store) => store.feelingReducer); 
+    const understandingData = useSelector((store) => store.understandingReducer);
+    const supportedData = useSelector((store) => store.supportedReducer);
+    const commentsData = useSelector((store) => store.commentsReducer);
 
-    const [commentsInput, setCommentsInput] = useState('')
+    console.log('feeling data is:', feelingData);
+
     const dispatch = useDispatch()
     const history = useHistory()
 
     const submitFeedback = () => {
 
         axios({
-            method: 'POST',
-            url: '/api/feedback',
+            method: "POST",
+            url: "/api/feedback",
             data: {
-                feelingData,
-                understandingData,
-                supportedData,
-                commentsData
+                feeling: feelingData,
+                understanding: understandingData,
+                supported: supportedData,
+                comments: commentsData,
             }
+        })
             .then(() => {
-                dispatch({type: 'RESET_FEEDBACK', payload: 0})
-                history.push('/submit')
-                sendStatus(201)
+                dispatch({ type: "SUBMIT_FEELING", payload: 0 });
+                dispatch({ type: "SUBMIT_UNDERSTANDING", payload: 0 });
+                dispatch({ type: "SUBMIT_SUPPORTED", payload: 0 });
+                dispatch({ type: "SUBMIT_COMMENTS", payload: "" });
+                history.push('/submit');
             })
             .catch((error) => {
                 console.log('Error in POST /api/feedback', error);
                 alert('Error saving your feedback! Please try again')
             })
-        })
-    }
-    
-    
-    const submitComments = () => {
-    
-        dispatch ({
-            type: 'SUBMIT_COMMENTS', 
-            payload: commentsInput
-        })
-        history.push('/review')
-    }
+        }
             return (
                 <div>
                     <h1>Review your feedback</h1>
@@ -53,7 +47,7 @@ function Review(){
                     <p>Understanding: {understandingData} </p>
                     <p>Support: {supportedData} </p>
                     <p>Comments: {commentsData} </p>
-                    <button onClick={submitFeedback}>Submit</button>
+                    <button data-testid="next" onClick={submitFeedback}>Submit</button>
                 </div>
               )
 

@@ -24,13 +24,14 @@ const submitFeeling = () => {
             <div>
                 <h1>How are you feeling today?</h1>
                 <input 
+                    data-testid="input"
                     value={feelingInput}
                     type="number"
                     min="1"
                     max="5"
                     onChange={handleFeelingInput}
                 />
-                <button onClick={submitFeeling}>Next</button>
+                <button data-testid="next" onClick={submitFeeling}>Next</button>
             </div>
           )
 }

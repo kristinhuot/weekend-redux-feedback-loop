@@ -23,13 +23,14 @@ const submitSupported = () => {
             <div>
                 <h1>How well are you being supported?</h1>
                 <input 
+                    data-testid="input"
                     value={supportedInput}
                     type="number"
                     min="1"
                     max="5"
                     onChange={handleSupportedInput}
                 />
-                <button onClick={submitSupported}>Next</button>
+                <button data-testid="next" onClick={submitSupported}>Next</button>
             </div>
           )
 
